@@ -2,14 +2,13 @@
 import itchat
 from itchat.content import *
 
+CHATROOM_NAME = u'测试群'
+MYNAME = u'S'
+
 @itchat.msg_register(TEXT)
 def text_reply(msg):
-    print '*' * 10
-    print msg
-    print '*' * 10
     from_user_name = msg['FromUserName']
     to_user_name = msg['ToUserName']
-    print msg['']
     print 'from :' + from_user_name
     print 'to :' + to_user_name
     print msg['Text']
@@ -17,15 +16,13 @@ def text_reply(msg):
 
 @itchat.msg_register([TEXT,SHARING],isGroupChat=True)
 def group_reply_text(msg):
-    print '*' * 10
-    print msg
-    print '*' * 10
     from_user_name = msg['FromUserName']
     chat_room = itchat.search_chatrooms(userName=from_user_name)
-    print chat_room['NickName'] if chat_room else ''
-    to_user_name = msg['ToUserName']
-    print 'from :' + from_user_name
-    print 'to :' + to_user_name
+    #获取群名称
+    chat_room_name =  chat_room['NickName'] if chat_room else 'wrong'
+    print chat_room_name
+    if CHATROOM_NAME in chat_room_name:
+        pass
 
     print msg['Content']
 
