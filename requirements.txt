@@ -1,0 +1,4 @@
+itchat==1.2.29
+pypng==0.0.18
+PyQRCode==1.2.1
+requests==2.13.0
