@@ -26,7 +26,6 @@ def group_reply_text(msg):
     print chat_room_name
     if CHATROOM_NAME in chat_room_name:
         s.handleMsg(msg['Content'],from_user_name)
-        #s.print_dict()
     print msg['Content']
 
 

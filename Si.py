@@ -29,6 +29,11 @@ class Si:
 
             self.handleOrder(order)
 
+        if not self.notyet and set(self.allready)==set(MEMBERS):
+            itchat.send('%s' % self.reply, self.fun)
+            self.end()
+            itchat.send('全部签到,结束通知', self.fun)
+
     def handleOrder(self,order):
         if order in '发通知':
             print 'i 发通知'
@@ -38,24 +43,21 @@ class Si:
         elif order in '还有谁':
             print '还有谁'
             self.notyet = list(set(MEMBERS)-set(self.allready))
-            if self.msglist:
-                self.reply = self.msglist[0]+'\nallreay: ' + ' '.join(self.allready)+\
-                             '\nnot yet: '+' '.join(self.notyet)
-            self.print_dict()
+
+            itchat.send('%s' % self.reply, self.fun)
         elif order in '结束':
             if self.msglist:
                 print '结束'
-                self.print_dict()
+                itchat.send('%s' % self.reply, self.fun)
                 itchat.send('结束通知', self.fun)
-                self.flag = False
-                self.msglist = []
-                self.allready = []
-                self.notyet = []
-                self.msgdict = {}
+                self.end()
             else:itchat.send('nothing to notice', self.fun)
 
+    def end(self):
+        self.flag = False
+        self.msglist = []
+        self.allready = []
+        self.notyet = []
+        self.msgdict = {}
 
-    def print_dict(self):
-        print self.reply
-        print type(self.reply)
-        itchat.send('%s' % self.reply,self.fun)
+
