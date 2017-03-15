@@ -25,6 +25,10 @@ class Si:
             self.msglist.append(self.content)
             if self.content in MEMBERS:
                 self.allready.append(self.content)
+            if self.msglist:
+                self.reply = self.msglist[0]+'\n已签到: ' + ' '.join(self.allready)+\
+                             '\n未签到: '+' '.join(self.notyet)
+
         if order in ORDERS:
 
             self.handleOrder(order)
