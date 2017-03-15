@@ -26,6 +26,7 @@ class Si:
             if self.content in MEMBERS:
                 self.allready.append(self.content)
             if self.msglist:
+                self.notyet = list(set(MEMBERS) - set(self.allready))
                 self.reply = self.msglist[0]+'\n已签到: ' + ' '.join(self.allready)+\
                              '\n未签到: '+' '.join(self.notyet)
 
@@ -47,7 +48,8 @@ class Si:
         elif order in '还有谁':
             print '还有谁'
             self.notyet = list(set(MEMBERS)-set(self.allready))
-
+            self.reply = self.msglist[0] + '\n已签到: ' + ' '.join(self.allready) + \
+                         '\n未签到: ' + ' '.join(self.notyet)
             itchat.send('%s' % self.reply, self.fun)
         elif order in '结束':
             if self.msglist:
