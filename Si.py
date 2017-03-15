@@ -10,6 +10,8 @@ class Si:
         self.content = None
         self.fun = None
         self.msglist = []
+        self.allready = []
+        self.notyet = []
         self.msgdict = {'msg': self.msglist}
         self.flag = False
     def handleMsg(self,content,from_user_name):
@@ -18,6 +20,8 @@ class Si:
         order = self.content[2:6].strip().encode('utf-8')
         if self.flag:
             self.msglist.append(self.content)
+            if self.content in MEMBERS:
+                self.allready.append(self.content)
         if order in ORDERS:
             self.handleOrder(order)
 

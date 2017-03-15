@@ -34,7 +34,7 @@ def group_reply_text(msg):
 if __name__ == "__main__":
     print 'start'
     s = Si()
-    itchat.auto_login(hotReload=True)
+    itchat.auto_login(hotReload=True,enableCmdQR=True)
     print 'playing'
     itchat.run()
     print 'end'
