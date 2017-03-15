@@ -26,7 +26,7 @@ def group_reply_text(msg):
     print chat_room_name
     if CHATROOM_NAME in chat_room_name:
         s.handleMsg(msg['Content'],from_user_name)
-        s.print_dict()
+        #s.print_dict()
     print msg['Content']
 
 
@@ -34,7 +34,7 @@ def group_reply_text(msg):
 if __name__ == "__main__":
     print 'start'
     s = Si()
-    itchat.auto_login(hotReload=True,enableCmdQR=True)
+    itchat.auto_login(hotReload=True,enableCmdQR=2)
     print 'playing'
     itchat.run()
     print 'end'
