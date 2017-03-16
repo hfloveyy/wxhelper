@@ -20,12 +20,16 @@ def text_reply(msg):
 def group_reply_text(msg):
 
     from_user_name = msg['FromUserName']
-    chat_room = itchat.search_chatrooms(userName=from_user_name)
+    to_user_name = msg['ToUserName']
+    print 'from :' + from_user_name
+    print 'to :' + to_user_name
+    un = from_user_name if u'@@' in from_user_name else to_user_name
+    chat_room = itchat.search_chatrooms(userName= un)
     #获取群名称
     chat_room_name =  chat_room['NickName'] if chat_room else 'wrong'
     print chat_room_name
     if CHATROOM_NAME in chat_room_name:
-        s.handleMsg(msg['Content'],from_user_name)
+        s.handleMsg(msg['Content'],from_user_name,to_user_name)
     print msg['Content']
 
 

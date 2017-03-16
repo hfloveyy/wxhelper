@@ -12,15 +12,18 @@ class Si:
         print 'i am Si！'
         self.content = None
         self.fun = None
+        self.tun = None
         self.msglist = []
         self.allready = []
         self.notyet = []
         self.msgdict = {'msg': self.msglist}
         self.flag = False
         self.reply = None
-    def handleMsg(self,content,from_user_name):
+    def handleMsg(self,content,from_user_name,to_user_name):
         self.content = content.encode('utf-8')
-        self.fun = from_user_name
+        self.fun = from_user_name if u'@@' in from_user_name else to_user_name
+        print self.fun
+        self.tun = to_user_name
         order = self.content[2:12].strip()
         if self.flag:
             self.msglist.append(self.content)
