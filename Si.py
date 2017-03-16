@@ -5,7 +5,8 @@ sys.setdefaultencoding('utf8')
 import itchat
 
 ORDERS = ['发通知','还有谁','结束']
-MEMBERS = ['我','你','他']
+MEMBERS = ['哈尔滨监狱','牡丹江监狱','佳木斯监狱','呼兰监狱','黎明监狱','齐齐哈尔监狱','讷河监狱','新康监狱','华山监狱','香兰监狱','大庆监狱',
+           '凤凰山监狱','新建监狱','女子监狱','鸡西监狱','东风监狱','双鸭山监狱','北安监狱','七台河监狱','泰来监狱','五大连池监狱','未管所','六三监狱','松滨监狱']
 class Si:
     def __init__(self):
         print 'i am Si！'
@@ -27,6 +28,7 @@ class Si:
                 self.allready.append(self.content)
             if self.msglist:
                 self.notyet = list(set(MEMBERS) - set(self.allready))
+                self.notyet = self.notyet if self.notyet else ' '
                 self.reply = self.msglist[0]+'\n已签到: ' + ' '.join(self.allready)+\
                              '\n未签到: '+' '.join(self.notyet)
 
